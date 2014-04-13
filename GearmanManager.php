@@ -450,6 +450,8 @@ abstract class GearmanManager {
             $this->prefix = $this->config['prefix'];
         } elseif(defined('NET_GEARMAN_JOB_CLASS_PREFIX')) {
             $this->prefix = NET_GEARMAN_JOB_CLASS_PREFIX;
+        } else {
+            $this->prefix = 'Net_Gearman_Job_';
         }
 
         if(isset($opts['u'])){
@@ -720,6 +722,7 @@ abstract class GearmanManager {
                     }
 
                     $this->functions[$function]['path'] = $file;
+                    $this->functions[$function]['class_name'] = $this->prefix . $function;
 
                     /**
                      * Note about priority. This exploits an undocumented feature
